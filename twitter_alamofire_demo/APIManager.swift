@@ -58,6 +58,7 @@ class APIManager: SessionManager {
 
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
+    
 
     func getCurrentAccount(completion: @escaping (User?, Error?) -> ()) {
         request(URL(string: "https://api.twitter.com/1.1/account/verify_credentials.json")!)
@@ -104,7 +105,7 @@ class APIManager: SessionManager {
                         let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Failed to parse tweets"])
                         completion(nil, error)
                         return
-                    }
+                    }   
 
                     let data = NSKeyedArchiver.archivedData(withRootObject: tweetDictionaries)
                     UserDefaults.standard.set(data, forKey: "hometimeline_tweets")

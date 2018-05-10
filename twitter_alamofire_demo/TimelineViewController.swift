@@ -65,7 +65,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
         cell.tweet = tweets[indexPath.row]
-        print(tweets[indexPath.row])
         
         return cell
     }
@@ -84,15 +83,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         APIManager.shared.logout()
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toTweetDetail" {
+            let tweetCell = sender as! TweetCell
+            let tweetInfo = tweetCell.tweet
+            let tweetDetailVC = segue.destination as! TweetDetailViewController
+            tweetDetailVC
+        }
+    }
     
 }
